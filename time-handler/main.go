@@ -18,16 +18,15 @@ func timeHandler(format string) http.Handler {
 
 func main() {
 
-    mux := http.NewServeMux()
 
     th1123 := timeHandler(time.RFC1123)
 
-    mux.Handle("/time/rfc1123", th1123)
+    http.Handle("/time/rfc1123", th1123)
 
     th3339 := timeHandler(time.RFC3339)
 
-    mux.Handle("/time/rfc3339", th3339)
+    http.Handle("/time/rfc3339", th3339)
 
     log.Println("Listening.....")
-    http.ListenAndServe(":3000", mux)
+    http.ListenAndServe(":3000", nil)
 }
