@@ -6,27 +6,28 @@ import (
     "time"
 )
 
-type timeHandler struct {
-    format string
-}
+//Code example for http://www.alexedwards.net/blog/a-recap-of-request-handling
 
-func (th *timeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-    tm := time.Now().Format(th.format)
-    w.Write([]byte("The time is: " + tm))
+func timeHandler(format string) http.Handler {
+    fn := func(w http.ResponseWriter, r *http.Request) {
+        tm := time.Now().Format(format)
+        w.Write([]byte("The time is: " + tm))
+    }
+    return http.HandlerFunc(fn)
 }
 
 func main() {
 
     mux := http.NewServeMux()
 
-    th1123 := &timeHandler{format: time.RFC1123}
+    th1123 := timeHandler(time.RFC1123)
 
     mux.Handle("/time/rfc1123", th1123)
 
-    th3339 := &timeHandler{format: time.RFC3339}
+    th3339 := timeHandler(time.RFC3339)
 
     mux.Handle("/time/rfc3339", th3339)
 
-    log.Println("Listening...")
+    log.Println("Listening.....")
     http.ListenAndServe(":3000", mux)
 }
