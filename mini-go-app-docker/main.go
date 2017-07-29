@@ -2,10 +2,7 @@ package main
 
 import (
 	"fmt"
-	//"github.com/ScruffyProdigy/Middleware/redirecter"
-	//"github.com/ScruffyProdigy/TheRack/httper"
 	"io/ioutil"
-	//"log"
 	"net/http"
 	"os"
 )
