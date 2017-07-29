@@ -1,0 +1,15 @@
+[mysqld]
+sql-mode                    = NO_ENGINE_SUBSTITUTION
+innodb_adaptive_hash_index  = 0
+flush_time                  = 0
+log_error                   = /var/lib/mysql/error.log
+general_log_file            = /var/lib/mysql/general.log
+
+# Change following to 1 to enable the logs
+general_log                 = 0
+slow_query_log              = 0
+
+slow_query_log_file         = /var/lib/mysql/slow.log
+long_query_time             = 2
+log-queries-not-using-indexes
+lower_case_table_names      = 2
