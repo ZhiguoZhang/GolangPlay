@@ -1,0 +1,2 @@
+# GolangPlay
+Play some Golang
